@@ -1,6 +1,6 @@
 #****VARIABLES****
-NAME = pipex
-NAME_BONUS = pipex_bonus
+NAME = philo
+#NAME_BONUS = philo_bonus
 
 CC = gcc
 CFLAGS = -g -Wall -Werror -Wextra
@@ -84,11 +84,7 @@ RESULT=$$?; \
 endef
 
 #****SOURCES****
-SRCS = src/pipex.c \
-		src/pipex_utils.c \
-		src/pipex_prog.c \
-		src/pipex_io.c \
-		src/pipex_init.c
+SRCS = src/philo.c
 
 #SRCS_BONUS = src_bonus/...
 
@@ -120,7 +116,7 @@ $(OBJS): $(D_OBJ)%.o : $(D_SRC)%.c $(HEADER)
 #		@mkdir -p $(D_OBJ_BONUS)
 #		@$(call run_and_test, $(CC) $(CFLAGS) -c $< -o $@)
 
-bonus: $(NAME_BONUS)
+#bonus: $(NAME_BONUS)
 #bonus: do_libft $(NAME_BONUS)
 
 #tests:	
