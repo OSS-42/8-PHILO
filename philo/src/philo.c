@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: ewurstei <ewurstei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:06 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/10/24 17:18:17 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/10/25 15:03:20 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	philo(t_vault *data)
 	i = 0;
 	while (i < data->nbr_philos)
 	{
-		pthread_create();
+		pthread_create(&thread_id[i], NULL, NULL, NULL);
+		i++;
 
 
- join is performed when one wants to wait for a thread to finish. A thread calling routine may launch multiple threads then wait for 
+ join is performed when one wants to wait for a thread to finish. A thread calling 
+ routine may launch multiple threads then wait for 
  them to finish to get the results. One wait for the completion of the threads with a join. 
 for(i=0; i < NTHREADS; i++)
    {
@@ -34,7 +36,6 @@ for(i=0; i < NTHREADS; i++)
       pthread_join( thread_id[j], NULL); 
    }
   
-
 
 
 
