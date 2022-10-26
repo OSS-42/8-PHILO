@@ -26,11 +26,35 @@ NO_OF_FILES := $(words $(wildcard $(D_SRC)*.c))
 
 #****COLORS****
 LRED = \033[91m
+RED = \033[91m
 LGREEN = \033[92m
 LYELLOW = \033[93
 LMAGENTA = \033[95m
 LCYAN = \033[96m
 DEF_COLOR = \033[0;39m
+NC = \033[0;39m
+
+#*****INTRO*****
+define intro
+@printf " \
+			${RED}           XXXXXXXXXX\n\
+			${RED}	 XXXXXXXXXXXXXXXX\n\
+			${RED}     XXXXXXXXXXXXXXXXXXXXXX\n\
+			${RED}   XXXX       XXXX       XXXX\n\
+			${RED}  XXXX        XXXX        XXXX\n\
+			${RED} XXXX         XXXX         XXXX\n\
+			XXXX          XXXX          XXXX\n\
+			XXX           XXXX           XXX\n\
+			XXX  ${NC}***${RED}      XXXX      ${NC}***${RED}  XXX\n\
+			XXX  ${NC}******* ${RED} XXXX ${NC} *******${RED}  XXX\n\
+			XXXX   ${NC}******${RED} XXXX ${NC}******${RED}   XXXX\n\
+			XXXX    ${NC}****${RED}  XXXX  ${NC}****${RED}    XXXX\n\
+			${RED} XXX          XXXX          XXX\n\
+			${RED}  XXXX        XXXX        XXXX\n\
+			${RED}    XXXXX     XXXX     XXXXX\n\
+			${RED}       XXXXXXXXXXXXXXXXXXX\n\
+			${RED}	   XXXXXXXXXXXX\n";
+endef
 
 #****MAKEUP RULE****
 #****before emoji :
@@ -100,6 +124,7 @@ $(NAME):	$(OBJS)
 	@echo "$(LGREEN)Software Compilation completed ...$(NO_OF_FILES) files done !$(DEF_COLOR)"
 
 $(OBJS): $(D_OBJ)%.o : $(D_SRC)%.c $(HEADER)
+		$(call intro)
 		@mkdir -p $(D_OBJ)
 		@$(call run_and_test, $(CC) $(CFLAGS) -c $< -o $@)
 
