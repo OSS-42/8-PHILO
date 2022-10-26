@@ -3,116 +3,146 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewurstei <ewurstei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:06 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/10/25 15:03:20 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/10/26 11:12:48 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	philo(t_vault *data)
-{
-	size_t	i;
+int	primes[10] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
 
-	i = 0;
-	while (i < data->nbr_philos)
+void	*routine(void *arg)
+{
+	int	index;
+	int	sum;
+	int	j;
+	
+	index = *(int *)arg;
+	j = 0;
+	sum = 0;
+	while (j < 5)
 	{
-		pthread_create(&thread_id[i], NULL, NULL, NULL);
-		i++;
-
-
- join is performed when one wants to wait for a thread to finish. A thread calling 
- routine may launch multiple threads then wait for 
- them to finish to get the results. One wait for the completion of the threads with a join. 
-for(i=0; i < NTHREADS; i++)
-   {
-      pthread_create( &thread_id[i], NULL, thread_function, NULL );
-   }
-
-   for(j=0; j < NTHREADS; j++)
-   {
-      pthread_join( thread_id[j], NULL); 
-   }
-  
-
-
-
-
-		
-		i++;
+		sum = sum + primes[index];
+		j++;
 	}
-	return ;
-}
-
-void	init(t_vault *data)
-{
-	if (data->agc == 6)
-		data->cycles = ft_atolong(data->agv[5]);
-	else
-		data->cycles = 999;
-	data->nbr_philos = ft_atolong(data->agv[1]);
-	data->chopsticks = data->nbr_philos;
-	data->time_to_die = ft_atolong(data->agv[2]);
-	data->time_to_eat = ft_atolong(data->agv[3]);
-	data->time_to_sleep = ft_atolong(data->agv[4]);
-	return ;
+	printf("Local sum = %d\n", sum);
+	*(int *)arg = sum;
+	return (arg);
 }
 
 int	main(int ac, char **av)
 {
-	t_vault data;
-	
-	if (ac == 5 || ac == 6)
+	pthread_t	th[2];
+	int	i;
+	int	*a;
+	(void)	ac;
+	(void)	av;
+	int	*result;
+	int	global_sum;
+
+	i = -1;
+	while (++i < 2)
 	{
-		data.agv = av;
-		data.agc = ac;
-		data.nbr_ac = ac - 1;
-		init(&data);
-		philo(&data);
+		a = malloc(sizeof(int));
+		*a = i * 5;
+		if (pthread_create(&th[i], NULL, &routine, a) != 0)
+			perror("Failed to create thread)");
 	}
-	else
-		printf("%sn", "Error : usage : ./philo 'qty philo' 'time to die' 'time to eat' 'time to sleep' [cycles]");
+	i = 0;
+	while (i < 2)
+	{
+		global_sum = global_sum + *(int *)result;
+		if (pthread_join(th[i], (void *)&result) != 0)
+			perror("Failed to join thread)");
+		free(result);
+		i++;
+	}
+	printf("Global sum = %d\n", global_sum);
 	return (0);
 }
 
 
 
-/*
-void	*print_message_function(void *ptr)
-{
-	char	*message;
+// void	*roll_dice()
+// {
+// 	int	value;
+// 	int	*result;
 
-	message = (char *) ptr;
-	printf("%s \n", message);
-	return (NULL);
-}
+// 	result = malloc((sizeof(int)));
+// 	value = (rand() % 6) + 1;
+// 	*result = value;
+// 	//printf("%d\n", value);
+// 	printf("Thread result : %p\n", result);
+// 	return (void *) result;
+// }
 
-int	main(void)
-{
-	pthread_t	thread1;
-	pthread_t	thread2;
-	char		*message1;
-	char		*message2;
-	int			iret1;
-	int			iret2;
+// int	main(int ac, char **av)
+// {
+// 	(void)	ac;
+// 	(void)	av;
+// 	srand(time(NULL));
+// 	pthread_t	th;
+// 	int	*res;
 
-	/* Create independent threads each of which will execute function
-	message1 = "Thread 1";
-	message2 = "Thread 2";
-	iret1 = pthread_create(&thread1, NULL, print_message_function, (void*) message1);
-	iret2 = pthread_create(&thread2, NULL, print_message_function, (void*) message2);
+// 	if (pthread_create(&th, NULL, &roll_dice, NULL) != 0)
+// 		return (1);
+// 	if (pthread_join(th, (void **) &res) != 0)
+// 		return (2);
+// 	printf("result : %d\n", *res);
+// 	printf("Main res: %p\n", res);
+// 	free(res);
+// 	return (0);
+// }
 
-	/* Wait till threads are complete before main continues. Unless we
-	/* wait we run the risk of executing an exit which will terminate
-	/* the process and all threads before the threads have completed.
+// int	mails = 0;
+// pthread_mutex_t	mutex;
 
-	pthread_join( thread1, NULL);
-	pthread_join( thread2, NULL); 
+// void *routine()
+// {
+// 	int	i;
 
-	printf("Thread 1 returns: %d\n",iret1);
-	printf("Thread 2 returns: %d\n",iret2);
-	exit(0);
-}
-*/
+// 	i = 0;
+// 	while (i < 10000000)
+// 	{
+// 		pthread_mutex_lock(&mutex);
+// 		mails++;
+// 		i++;
+// 		pthread_mutex_unlock(&mutex);
+// 	}
+// 	return NULL;
+// }
+
+// int	main(int ac, char **av)
+// {
+// 	pthread_t	th[4];
+// 	int			i;
+// 	(void)	ac;
+// 	(void)	av;
+
+// 	pthread_mutex_init(&mutex, NULL);
+// 	i = 0;
+// 	while (i < 4)
+// 	{
+// 		if (pthread_create(&th[i], NULL, &routine, NULL) != 0)
+// 		{
+// 			perror("Failed to create thread");
+// 			return (1);
+// 		}
+// 		printf("thread %d has started \n", i);
+// 		i++;
+// 	}
+// 	i = 0;
+// 	while (i < 4)
+// 	{
+// 		if (pthread_join(th[i], NULL) != 0)
+// 			return (2);
+// 		printf("thread %d has ended\n", i);
+// 		i++;
+// 	}
+// 	pthread_mutex_destroy(&mutex);
+// 	printf("Number of mails : %d\n", mails);
+// 	return (0);
+// }
