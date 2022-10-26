@@ -1,0 +1,68 @@
+{
+    "workbench.colorTheme": "2077",
+    "workbench.sideBar.location": "right",
+    "workbench.iconTheme": "helium-icon-theme",
+    "42header.username": "ewurstei",
+    "42header.email": "ewurstei@student.42quebec.com",
+    "editor.rulers": [80],
+    "workbench.colorCustomizations": {
+        "editorRuler.foreground": "#eaff00",
+    },
+
+    "themeswitcher.utcOffset": -5,
+    "themeswitcher.mappings": [
+        {
+            "time": "08:42",
+            "theme": "FireFly Pro"
+        },
+        {
+            "time": "13:42",
+            "theme": "FireFly Pro Midnight"
+        },
+        {
+            "time": "18:42",
+            "theme": "2077"
+        },
+        {
+            "time": "23:42",
+            "theme": "Signed Dark Pro"
+        }
+    ],
+    "workbench.startupEditor": "none",
+    "editor.minimap.enabled": false,
+    "files.exclude": {
+        "**/.git": false
+    },
+    "git.confirmSync": false,
+    "terminal.integrated.defaultProfile.windows": "WSL",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "WSL": {
+            "path": [
+                "C:\\WINDOWS\\System32\\wsl.exe"
+            ],
+            "args": [],
+            "icon": "terminal-ubuntu"
+        },
+    },
+    "files.autoSave": "afterDelay",
+    "editor.insertSpaces": false,
+    "git.autofetch": true,
+    "terminal.integrated.tabs.enabled": false,
+    "editor.renderWhitespace": "all",
+    "window.zoomLevel": -1,
+}
