@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:06 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/10/26 11:12:48 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:12:43 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	*routine(void *arg)
 	while (j < 5)
 	{
 		sum = sum + primes[index];
+		index++;
 		j++;
 	}
 	printf("Local sum = %d\n", sum);
@@ -52,11 +53,12 @@ int	main(int ac, char **av)
 			perror("Failed to create thread)");
 	}
 	i = 0;
+	global_sum = 0;
 	while (i < 2)
 	{
-		global_sum = global_sum + *(int *)result;
 		if (pthread_join(th[i], (void *)&result) != 0)
 			perror("Failed to join thread)");
+		global_sum = global_sum + (*result);
 		free(result);
 		i++;
 	}
