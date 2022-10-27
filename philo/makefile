@@ -36,24 +36,11 @@ NC = \033[0;39m
 
 #*****INTRO*****
 define intro
-@printf " \
-			${RED}           XXXXXXXXXX\n\
-			${RED}	 XXXXXXXXXXXXXXXX\n\
-			${RED}     XXXXXXXXXXXXXXXXXXXXXX\n\
-			${RED}   XXXX       XXXX       XXXX\n\
-			${RED}  XXXX        XXXX        XXXX\n\
-			${RED} XXXX         XXXX         XXXX\n\
-			XXXX          XXXX          XXXX\n\
-			XXX           XXXX           XXX\n\
-			XXX  ${NC}***${RED}      XXXX      ${NC}***${RED}  XXX\n\
-			XXX  ${NC}******* ${RED} XXXX ${NC} *******${RED}  XXX\n\
-			XXXX   ${NC}******${RED} XXXX ${NC}******${RED}   XXXX\n\
-			XXXX    ${NC}****${RED}  XXXX  ${NC}****${RED}    XXXX\n\
-			${RED} XXX          XXXX          XXX\n\
-			${RED}  XXXX        XXXX        XXXX\n\
-			${RED}    XXXXX     XXXX     XXXXX\n\
-			${RED}       XXXXXXXXXXXXXXXXXXX\n\
-			${RED}	   XXXXXXXXXXXX\n";
+@./intro.sh
+endef
+
+define intro_bonus
+@./intro_bonus.sh
 endef
 
 #****MAKEUP RULE****
@@ -138,6 +125,7 @@ $(OBJS): $(D_OBJ)%.o : $(D_SRC)%.c $(HEADER)
 #	@echo "$(LGREEN)Software Compilation completed !$(DEF_COLOR)"
 
 #$(OBJS_BONUS): $(D_OBJ_BONUS)%.o : $(D_SRC_BONUS)%.c $(HEADER_BONUS)
+#		$(call intro_bonus)
 #		@mkdir -p $(D_OBJ_BONUS)
 #		@$(call run_and_test, $(CC) $(CFLAGS) -c $< -o $@)
 
