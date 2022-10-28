@@ -21,15 +21,16 @@
 
 typedef struct s_vault
 {
-	char 	**agv;
-	int		agc;
-	int		nbr_ac;
-	int		cycles;
-	long	nbr_philos;
-	long	chopsticks;
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
+	char 		**agv;
+	int			agc;
+	int			nbr_ac;
+	int			cycles;
+	long		nbr_philos;
+	long		chopsticks;
+	long		time_to_die;
+	long		time_to_eat;
+	long		time_to_sleep;
+	long long	first_timestamp;
 }	t_vault;
 
 /***** LIBFT FUNCT. *****/
