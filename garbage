@@ -33,21 +33,12 @@ for(i=0; i < NTHREADS; i++)
 	return ;
 }
 
-void	check_args(t_vault *data)
-{
-	if (data->nbr_philos < 2 || data->time_to_eat < 0 || data->time_todie < 0 || data->time_to_sleep < 0 || data->nbr_philos > 250 || data->nbr_cycles <= 0)
-	{
-		perror("Error :");
-		return (-1);
-	}
-}
-
 void	init(t_vault *data)
 {
 	if (data->ac == 6)
 		data->cycles = ft_atolong(data->agv[5]);
 	else
-		data->cycles = 999;
+		data->cycles = -1;
 	data->nbr_philos = ft_atolong(data->agv[1]);
 	data->chopsticks = data->nbr_philos;
 	data->time_to_die = ft_atolong(data->agv[2]);

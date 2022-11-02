@@ -14,16 +14,15 @@
 # define PHILO_H
 
 # include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
+//# include <stdlib.h>
+//# include <stdio.h>
 # include <pthread.h>
-# include <semaphore.h>
+//# include <semaphore.h>
+# include <time.h>
+# include <sys/time.h>
 
 typedef struct s_vault
 {
-	char 		**agv;
-	int			agc;
-	int			nbr_ac;
 	int			cycles;
 	long		nbr_philos;
 	long		chopsticks;
@@ -31,16 +30,18 @@ typedef struct s_vault
 	long		time_to_eat;
 	long		time_to_sleep;
 	long long	first_timestamp;
+	int			is_dead;
 }	t_vault;
 
 /***** LIBFT FUNCT. *****/
-long	ft_atolong(const char *str);
+long		ft_atolong(const char *str);
 
 /***** LOGIQUE *****/
-void	init(t_vault *data);
-void	philo(t_vault *data);
+void		init(t_vault *data, int ac, char **av);
+void		philo(t_vault *data);
+long long	get_time_stamp(void)
 
 /***** ESSAI *****/
-void	*print_message_function(void *ptr);
+void		*print_message_function(void *ptr);
 
 #endif
