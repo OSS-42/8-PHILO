@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:06 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/10/26 13:12:43 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:09:32 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	main(int ac, char **av)
 {
-	t_vault data;
+	t_vault	data;
 	int		error_code;
 
 	error_code = EXIT_SUCCESS;
-	if (!init(&data, ac, av))
+	if (!(init(&data, ac, av)))
 		return (EXIT_FAILURE);
 
 	return (0);

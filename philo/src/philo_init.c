@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:29:03 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/01 10:29:03 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/03 12:36:44 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	philo_birth(t_vault *data, chopsticks, **philos)
 	while (philo_id < data->nbr_philos)
 	{
 		init_philo(&(*philos)[philo_id], chopsticks, data, philo_id);
-		philo_id++:
+		philo_id++;
 	}
 	return (1);
 }
@@ -59,7 +59,7 @@ int	init(t_vault *data, int ac, char **av)
 	data->time_to_eat = ft_atolong(av[3]);
 	data->time_to_sleep = ft_atolong(av[4]);
 	data->is_dead = 0;
-	if (data->nbr_philos < 1 || data->time_to_eat < 0 || data->time_todie < 0
+	if (data->nbr_philos < 1 || data->time_to_eat < 0 || data->time_to_die < 0
 		|| data->time_to_sleep < 0 || data->nbr_philos > 250)
 		return (0);
 	pthread_mutex_init();

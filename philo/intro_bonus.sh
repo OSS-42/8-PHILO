@@ -18,7 +18,8 @@ printf " \
 			${RED}   XXXX        XXX        XXXX\n \
 			${RED}  XXX          XXX          XXX     \n \
 			${RED} XXX  ${NC}ooo${RED}      XXX      ${NC}ooo${RED}  XXX\n \
-			${RED}XXX  ${NC}ooooooo ${RED}  XXX  ${NC} ooooooo${RED}  XXX\n \
+			${RED}XXX  ${NC}oooooo  ${RED}  XXX  ${NC}  oooooo${RED}  XXX\n \
+			${RED}XXX  ${NC}ooooooo  ${RED} XXX ${NC}  ooooooo${RED}  XXX\n \
 			${RED}XXX    ${NC}oooooo${RED}  XXX  ${NC}oooooo${RED}    XXX\n \
 			${RED} XXX     ${NC} ooo${RED}  XXX  ${NC}ooo ${RED}     XXX\n \
 			${RED}  XXX          XXX          XXX\n \

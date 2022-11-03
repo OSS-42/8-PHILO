@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:32 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/10/24 16:51:04 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:51:07 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,19 @@ typedef struct s_vault
 	int			is_dead;
 }	t_vault;
 
-/***** LIBFT FUNCT. *****/
+/***** main.c *****/
+
+void		philo(t_vault *data);
+
+/***** _libft.c *****/
 long		ft_atolong(const char *str);
 
-/***** LOGIQUE *****/
-void		init(t_vault *data, int ac, char **av);
-void		philo(t_vault *data);
-long long	get_time_stamp(void)
+/***** _utils.c *****/
+long long	get_time_stamp(void);
 
-/***** ESSAI *****/
-void		*print_message_function(void *ptr);
+/***** _init.c *****/
+int			init(t_vault *data, int ac, char **av);
+void		philo_params(x, y, t_vault *data, int philo_id);
+int			philo_birth(t_vault *data, chopsticks, **philos);
 
 #endif

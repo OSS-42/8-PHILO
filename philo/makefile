@@ -36,11 +36,11 @@ NC = \033[0;39m
 
 #*****INTRO*****
 define intro
-@./intro.sh
+@bash intro.sh
 endef
 
 define intro_bonus
-@./intro_bonus.sh
+@bash intro_bonus.sh
 endef
 
 #****MAKEUP RULE****
