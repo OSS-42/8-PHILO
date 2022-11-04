@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:32 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 10:55:51 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:28:35 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_vault
 	long			time_to_sleep;
 	long long		first_timestamp;
 	int				is_dead;
-	pthread_mutex_t	console_mutex;
+	pthread_mutex_t	mutex_death_call;
 	pthread_mutex_t	mutex_is_dead;
 	pthread_t		thread_of_death;
 }	t_vault;
@@ -65,11 +65,17 @@ long		ft_atolong(const char *str);
 /***** _utils.c *****/
 long long	get_time_stamp(void);
 void		take_chopstick(char *which_chopstick, t_philo *philo);
+void		give_back_chopstick_and_sleep(t_philo *philo);
+void		give_back_chopstick(char *which_chopstick, t_philo *philo);
 
 /***** _init.c *****/
 int			init_data(t_vault *data, int ac, char **av);
 void		philo_params(t_vault *data, t_philo *philo, t_fork **chopsticks, int philo_id);
 int			philo_birth(t_vault *data, chopsticks, **philo);
 int			threads_creation(t_vault *data, t_philo **philo);
+
+/***** _kill.c *****/
+int			is_dead(t_philo *philo);
+int			is_philo_really_dead(t_philo *philo, long now_time);
 
 #endif

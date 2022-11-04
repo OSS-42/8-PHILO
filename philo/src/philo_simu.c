@@ -6,13 +6,13 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:37:06 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 10:51:38 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:31:10 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	life_of_a_philo(void *arg)
+void	*life_of_a_philo(void *arg)
 {
 	t_philo	*philo;
 

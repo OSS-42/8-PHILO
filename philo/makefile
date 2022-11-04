@@ -95,7 +95,13 @@ RESULT=$$?; \
 endef
 
 #****SOURCES****
-SRCS = src/philo.c
+SRCS = src/philo.c \
+		src/philo_libft.c \
+		src/philo_utils.c \
+		src/philo_simu.c \
+		src/philo_init.c \
+		src/philo_kill.c \
+		src/philo_chopsticks.c
 
 #SRCS_BONUS = src_bonus/...
 
