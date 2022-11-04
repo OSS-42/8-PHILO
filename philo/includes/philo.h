@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:32 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 13:46:20 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:15:55 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 typedef struct s_vault
 {
-	int				cycles;
+	long			cycles;
 	long			nbr_philos;
 	long			time_to_die;
 	long			time_to_eat;
