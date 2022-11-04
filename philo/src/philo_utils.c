@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:14:23 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 15:59:23 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 16:03:16 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,6 @@ void	print_state(char *str, t_philo *philo)
 		printf("%09ld %d %s\n", now_time, philo->id, str);
 	pthread_mutex_unlock(&(philo->data->mutex_print_message));
 	return ;
-}
-
-int	print_error(void)
-{
-	printf("%s", "Error : usage : ./philo 'nbr philos' 'time to die'");
-	printf("%s\n", " 'time to eat' 'time to sleep' [nbr meals]");
-	return (0);
-}
-
-int	print_error2(void)
-{
-	printf("%s", "Error : unexpected error");
-	return (0);
 }
 
 long long	get_time_stamp(void)

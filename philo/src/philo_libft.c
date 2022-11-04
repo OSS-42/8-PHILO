@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:42:20 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 15:46:43 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 16:14:42 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ char	*is_av_digit(char *str)
 	if (j == i)
 		return (str);
 	else
-		return (NULL);
+		return ("0");
 }
