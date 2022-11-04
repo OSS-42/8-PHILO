@@ -6,40 +6,72 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:29:03 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/03 12:36:44 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 10:56:10 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	philo_params(x, y, t_vault *data, int philo_id)
-{
-	
-}
-
-int	philo_birth(t_vault *data, chopsticks, **philos)
+int		threads_creation(t_vault *data, t_philo **philo)
 {
 	int	philo_id;
 
-	*philos = malloc(sizeof(philos) * data->nbr_philos);
-	if (!(*philos))
+	data->first_timestamp = get_time_stamp();
+	philo_id = 0;
+	while (philo_id < data->nbr_philos)
+	{
+		if (pthread_create(&((*philo)[philo_id].thread), NULL, life_of_a_philo,
+			&((*philo))[philo_id]))
+			return (0);
+		philo_id++;
+	}
+	if (pthread_create(&(data->thread_of_death), NULL, is_philo_dead, philo))
+		return (0);
+	return (1);
+}
+
+void	philo_params(t_vault *data, t_philo *philo, t_fork **chopsticks,
+	int philo_id)
+{
+	philo->data = data;
+	philo->id = philo_id;
+	philo->last_meal = 0;
+	philo->meal_count = 0;
+	philo->right_chopstick = &((*chopsticks)[philo_id]);
+	philo->right_taken = 0;
+	philo->left_taken = 0;
+	if (philo_id == data->nbr_philos - 1)
+		philo->left_chopstick = &((*chopsticks)[0]);
+	else
+		philo->left_chopstick = &((*chopsticks)[philo_id + 1]);
+	philo->left_chopstick->used = 0;
+	pthread_mutex_init(&(philo->mutex_last_meal), NULL);
+	pthread_mutex_init(&(philo->left_chopstick->lock), NULL);
+}
+
+int	philo_birth(t_vault *data, t_fork **chopsticks, t_philo **philo)
+{
+	int	philo_id;
+
+	*philo = malloc(sizeof(philo) * data->nbr_philos);
+	if (!(*philo))
 		return (0);
 	*chopsticks = malloc(sizeof(chopsticks) * data->nbr_philos);
 	if (!(*chopsticks))
 	{
-		free(*philos);
+		free(*philo);
 		return (0);
 	}
 	philo_id = 0;
 	while (philo_id < data->nbr_philos)
 	{
-		init_philo(&(*philos)[philo_id], chopsticks, data, philo_id);
+		philo_params(data, &(*philo)[philo_id], chopsticks, philo_id);
 		philo_id++;
 	}
 	return (1);
 }
 
-int	init(t_vault *data, int ac, char **av)
+int	init_data(t_vault *data, int ac, char **av)
 {
 	if (ac < 5)
 	{
@@ -62,6 +94,7 @@ int	init(t_vault *data, int ac, char **av)
 	if (data->nbr_philos < 1 || data->time_to_eat < 0 || data->time_to_die < 0
 		|| data->time_to_sleep < 0 || data->nbr_philos > 250)
 		return (0);
-	pthread_mutex_init();
+	pthread_mutex_init(&(data->console_mutex), NULL);
+	pthread_mutex_init(&(data->mutex_is_dead), NULL);
 	return (1);
 }
