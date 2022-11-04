@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:42:20 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/10/24 16:43:41 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 15:46:43 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,30 @@ long	ft_atolong(const char *str)
 			sign = sign * -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - 48);
 		i++;
 	}
 	return (result * sign);
+}
+
+char	*is_av_digit(char *str)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (str[j])
+		j++;
+	while (str[i])
+	{
+		if (str[i] > '0' && str[i] < '9')
+			i++;
+	}
+	if (j == i)
+		return (str);
+	else
+		return (NULL);
 }
