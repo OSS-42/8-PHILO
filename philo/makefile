@@ -100,7 +100,8 @@ SRCS = src/philo.c \
 		src/philo_utils.c \
 		src/philo_simu.c \
 		src/philo_init.c \
-		src/philo_kill.c \
+		src/philo_threads.c \
+		src/philo_dead.c \
 		src/philo_chopsticks.c
 
 #SRCS_BONUS = src_bonus/...

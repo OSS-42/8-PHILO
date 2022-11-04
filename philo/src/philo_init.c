@@ -6,29 +6,11 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:29:03 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 11:25:54 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:48:51 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-int	threads_creation(t_vault *data, t_philo **philo)
-{
-	int	philo_id;
-
-	data->first_timestamp = get_time_stamp();
-	philo_id = 0;
-	while (philo_id < data->nbr_philos)
-	{
-		if (pthread_create(&((*philo)[philo_id].thread), NULL, life_of_a_philo,
-			&((*philo))[philo_id]))
-			return (0);
-		philo_id++;
-	}
-	if (pthread_create(&(data->thread_of_death), NULL, is_philo_dead, philo))
-		return (0);
-	return (1);
-}
 
 void	philo_params(t_vault *data, t_philo *philo, t_fork **chopsticks,
 	int philo_id)
@@ -94,7 +76,7 @@ int	init_data(t_vault *data, int ac, char **av)
 	if (data->nbr_philos < 1 || data->time_to_eat < 0 || data->time_to_die < 0
 		|| data->time_to_sleep < 0 || data->nbr_philos > 250)
 		return (0);
-	pthread_mutex_init(&(data->mutex_death_call), NULL);
+	pthread_mutex_init(&(data->mutex_print_message), NULL);
 	pthread_mutex_init(&(data->mutex_is_dead), NULL);
 	return (1);
 }
