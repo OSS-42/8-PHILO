@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:14:23 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 10:57:37 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:04:10 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,24 @@ void	take_chopstick(char *which_chopstick, t_philo *philo)
 	int		*taken;
 	t_fork	*chopstick;
 
-	 if (!(is_dead(philo)))
-	 {
+	if (!(is_dead(philo)))
+	{
 		taken = &(philo->right_taken);
-		fork = philo->right_chopstick;
-	 }
+		chopstick = philo->right_chopstick;
+		if (which_chopstick == "left")
+		{
+			taken = &(philo->left_taken);
+			chopstick = philo->left_chopstick;
+		}
+		pthread_mutex_lock(&(chopstick->lock));
+		if (!(*taken) && !(chopstick->used))
+		{
+			*taken = 1;
+			chopstick->used = 1;
+			pthread_mutex_unlock(&(chopstick->lock));
+			print_state("has taken chopstick", philo);
+		}
+		else
+			pthread_mutex_unlock(&(chopstick->lock));
+	}
 }
