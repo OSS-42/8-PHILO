@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:32 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 12:05:17 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 13:46:20 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define PHILO_H
 
 # include <unistd.h>
-//# include <stdlib.h>
-//# include <stdio.h>
+# include <stdlib.h>
+# include <stdio.h>
 # include <pthread.h>
 //# include <semaphore.h>
 # include <time.h>
@@ -55,7 +55,6 @@ typedef struct s_philo
 	t_vault			*data;
 }	t_philo;
 
-
 /***** main.c *****/
 void		philo(t_vault *data);
 
@@ -68,9 +67,9 @@ void		mod_usleep(long time_in_ms);
 void		print_state(char *str, t_philo *philo);
 
 /***** _chopsticks.c *****/
-void		take_chopstick(char *which_chopstick, t_philo *philo);
+void		take_chopstick(char which_chopstick, t_philo *philo);
 void		give_back_chopstick_and_sleep(t_philo *philo);
-void		give_back_chopstick(char *which_chopstick, t_philo *philo);
+void		give_back_chopstick(char which_chopstick, t_philo *philo);
 
 /***** _threads.c *****/
 int			threads_creation(t_vault *data, t_philo **philo);
@@ -80,11 +79,14 @@ void		threads_killing(t_philo *philo);
 /***** _init.c *****/
 int			init_data(t_vault *data, int ac, char **av);
 void		philo_params(t_vault *data, t_philo *philo, t_fork **chopsticks, int philo_id);
-int			philo_birth(t_vault *data, chopsticks, **philo);
+int			philo_birth(t_vault *data, t_fork **chopsticks, t_philo **philo);
 
+/***** _simu.c *****/
+void		*life_of_a_philo(void *arg);
 
 /***** _dead.c *****/
 int			is_dead(t_philo *philo);
+void		*is_philo_dead(void *arg);
 int			is_philo_really_dead(t_philo *philo, long now_time);
 
 #endif

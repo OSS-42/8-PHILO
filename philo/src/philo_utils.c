@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:14:23 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 11:41:53 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:03:39 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	mod_usleep(long time_in_ms)
 {
 	long	start_time;
 
-//	start_time = 0;
+	start_time = 0;
 	start_time = get_time_stamp();
 	while ((get_time_stamp() - start_time) < time_in_ms)
 		usleep(100);

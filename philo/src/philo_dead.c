@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:15:34 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 11:48:08 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 13:44:05 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	is_philo_really_dead(t_philo *philo, long now_time)
 	int	last_meal;
 
 	is_dead = 0;
-	pthread_mutex_lock(&(philo->last_meal));
+	pthread_mutex_lock(&(philo->mutex_last_meal));
 	last_meal = now_time - philo->last_meal;
-	pthread_mutex_unlock(&(philo->last_meal));
+	pthread_mutex_unlock(&(philo->mutex_last_meal));
 	if (last_meal > philo->data->time_to_die)
 	{
 		pthread_mutex_lock(&(philo->data->mutex_print_message));

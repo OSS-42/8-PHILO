@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:37:06 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 11:31:10 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/04 13:45:46 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	*life_of_a_philo(void *arg)
 	{
 		if (philo->meal_count >= philo->data->cycles && philo->data->cycles > 0)
 			break ;
-		take_chopstick('left', philo);
+		take_chopstick('L', philo);
 		if (philo->left_taken)
-			take_chopstick('right', philo);
+			take_chopstick('R', philo);
 		if (philo->right_taken && philo->left_taken)
 		{
 			print_state("is eating", philo);

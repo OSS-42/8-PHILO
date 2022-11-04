@@ -5,15 +5,15 @@ NAME = philo
 CC = gcc
 CFLAGS = -g -Wall -Werror -Wextra -pthread
 RM = rm -rf
-#LIBFT = libft.a
 HEADER = includes/philo.h
+D_SRC = src/
+D_OBJ = obj/
+OBJS = $(patsubst $(D_SRC)%.c,$(D_OBJ)%.o,$(SRCS))
+#LIBFT = libft.a
 #HEADER_BONUS = includes/pipex_bonus.h
 #D_LIBFT = includes/libft/
-D_SRC = src/
 #D_SRC_BONUS = src_bonus/
-D_OBJ = obj/
 #D_OBJ_BONUS = obj_bonus/
-OBJS = $(patsubst $(D_SRC)%.c,$(D_OBJ)%.o,$(SRCS))
 #OBJS_BONUS = $(patsubst $(D_SRC_BONUS)%.c,$(D_OBJ_BONUS)%.o,$(SRCS_BONUS))
 
 OK_STRING = "[OK]"
@@ -35,7 +35,7 @@ DEF_COLOR = \033[0;39m
 NC = \033[0;39m
 
 #*****INTRO*****
-define intro
+define intro_mandatory
 @bash intro.sh
 endef
 
@@ -108,26 +108,22 @@ SRCS = src/philo.c \
 
 #$(V).SILENT:
 
-#all:	do_libft $(NAME)
 all:	$(NAME)
 
-$(NAME):	$(OBJS)
+wasabi:
+	@$(call intro_mandatory)
+
+$(NAME):	wasabi $(OBJS)
 	@$(CC) $(CFLAGS) -o $@ $(OBJS)
-#	@$(CC) $(CFLAGS) -o $@ $(OBJS) $(D_LIBFT)$(LIBFT)
 	@printf "%b" "$(LCYAN)$(COMP_STRING)$(LMAGENTA) $(@F)$(DEF_COLOR)\r"
-	@echo "$(LGREEN)Software Compilation completed ...$(NO_OF_FILES) files done !$(DEF_COLOR)"
+	@echo "$(LGREEN)Software Compilation completed ...$(NO_OF_FILES) files available !$(DEF_COLOR)"
 
 $(OBJS): $(D_OBJ)%.o : $(D_SRC)%.c $(HEADER)
-		$(call intro)
 		@mkdir -p $(D_OBJ)
 		@$(call run_and_test, $(CC) $(CFLAGS) -c $< -o $@)
 
-#do_libft:
-#	@$(MAKE) -C $(D_LIBFT)
-
 #$(NAME_BONUS): $(OBJS_BONUS)
 #	@$(CC) $(CFLAGS) -o $@ $(OBJS_BONUS)
-#	@$(CC) $(CFLAGS) -o $@ $(OBJS_BONUS) $(D_LIBFT)$(LIBFT)
 #	@printf "%b" "$(LCYAN)$(COMP_STRING)$(LMAGENTA) $(@F)$(DEF_COLOR)\r"
 #	@echo "$(LGREEN)Software Compilation completed !$(DEF_COLOR)"
 
@@ -138,21 +134,34 @@ $(OBJS): $(D_OBJ)%.o : $(D_SRC)%.c $(HEADER)
 
 #bonus: $(NAME_BONUS)
 #bonus: do_libft $(NAME_BONUS)
-
-#tests:	
-
-#btests : bonus
 	
 clean:
 	@$(call cleaning, $(RM) $(D_OBJ))
 	@$(RM) $(D_OBJ_BONUS)
-#	@$(MAKE) --no-print-directory -C $(D_LIBFT) clean
 
 fclean:	clean
 	@$(call fcleaning, $(RM) $(NAME))
 	@$(RM) $(NAME_BONUS)
-#	@$(MAKE) --no-print-directory -C $(D_LIBFT) fclean
 
 re:	fclean all
 
 .PHONY: all clean fclean re
+
+
+
+
+
+#NOT UTILISED IN PHILO
+
+#all:	do_libft $(NAME)
+
+#compiling...
+#	@$(CC) $(CFLAGS) -o $@ $(OBJS) $(D_LIBFT)$(LIBFT)
+#	@$(CC) $(CFLAGS) -o $@ $(OBJS_BONUS) $(D_LIBFT)$(LIBFT)
+
+#do_libft:
+#	@$(MAKE) -C $(D_LIBFT)
+
+#cleaning...
+#	@$(MAKE) --no-print-directory -C $(D_LIBFT) clean
+#	@$(MAKE) --no-print-directory -C $(D_LIBFT) fclean

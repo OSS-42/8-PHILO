@@ -11,7 +11,7 @@ DEF_COLOR="\e[0;39m"
 NC="\e[0;39m"
 
 #*****INTRO*****
-printf " \
+printf " \n \
 			${RED}             XXXXXXX\n \
 			${RED}        XXXXXXXXXXXXXXXXX\n \
 			${RED}     XXXXXX    XXX    XXXXXX\n \
@@ -27,4 +27,5 @@ printf " \
 			${RED}     XXXXXX    XXX    XXXXXX\n \
 			${RED}        XXXXXXXXXXXXXXXXXX\n \
 			${RED}             XXXXXXX${NC}\n${NC} \
-			${NC}_________________________________\n"
+			${NC}_________________________________\n
+			\n"
