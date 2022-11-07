@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:15:34 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/07 08:32:17 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:04:48 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	is_philo_really_dead(t_philo *philo, long now_time)
 		pthread_mutex_lock(&(philo->data->mutex_is_dead));
 		philo->data->is_dead = 1;
 		pthread_mutex_unlock(&(philo->data->mutex_is_dead));
-		printf("%09ld %d died", now_time, philo->id);
+		printf("%09ld %d died", now_time, philo->id + 1);
 		pthread_mutex_unlock(&(philo->data->mutex_print_message));
 		is_dead = 1;
 	}

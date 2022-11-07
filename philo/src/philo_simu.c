@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:37:06 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 15:45:15 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:08:57 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	*life_of_a_philo(void *arg)
 		if (philo->right_taken && philo->left_taken)
 		{
 			print_state("is eating", philo);
-			mod_usleep(philo->data->time_to_eat);
-			philo->meal_count++;
 			pthread_mutex_lock(&(philo->mutex_last_meal));
 			philo->last_meal = get_time_stamp() - philo->data->first_timestamp;
 			pthread_mutex_unlock(&(philo->mutex_last_meal));
+			mod_usleep(philo->data->time_to_eat);
+			philo->meal_count++;
 			give_back_chopstick_and_sleep(philo);
 		}
 	}

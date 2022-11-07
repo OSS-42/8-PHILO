@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:29:03 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/07 10:04:57 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:15:13 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ int	init_data(t_vault *data, int ac, char **av)
 	{
 		data->cycles = ft_atolong(is_av_digit(av[5]));
 		if (data->cycles < 0)
-			return (0);
+			data->cycles = 0;
 	}
 	data->is_dead = 0;
 	if (data->nbr_philos < 1 || data->time_to_eat <= 0 || data->time_to_die <= 0
-		|| data->time_to_sleep <= 0 || data->cycles <= 0
+		|| data->time_to_sleep <= 0 || data->cycles == 0
 		|| data->nbr_philos > 200)
 	{
 		usage_message();
