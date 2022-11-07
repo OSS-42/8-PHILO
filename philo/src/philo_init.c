@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:29:03 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/07 09:39:25 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 10:01:50 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,7 @@ int	init_data(t_vault *data, int ac, char **av)
 		usage_message();
 		return (0);
 	}
-	data->nbr_philos = ft_atolong(is_av_digit(av[1]));
-	data->time_to_die = ft_atolong(is_av_digit(av[2]));
-	data->time_to_eat = ft_atolong(is_av_digit(av[3]));
-	data->time_to_sleep = ft_atolong(is_av_digit(av[4]));
+	arg_conversion(data, av);
 	data->cycles = -1;
 	if (ac == 6)
 	{

@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:32 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/07 09:39:52 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 10:01:33 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ long long	get_time_stamp(void);
 void		mod_usleep(long time_in_ms);
 void		print_state(char *str, t_philo *philo);
 void		usage_message(void);
+void		arg_conversion(t_vault *data, char **av);
 
 /***** _chopsticks.c *****/
 void		take_chopstick(char which_chopstick, t_philo *philo);
