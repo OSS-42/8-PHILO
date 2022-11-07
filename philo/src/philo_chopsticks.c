@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:34:51 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 13:47:11 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 10:43:10 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	give_back_chopstick_and_sleep(t_philo *philo)
 	give_back_chopstick('R', philo);
 	print_state("is now sleeping", philo);
 	mod_usleep(philo->data->time_to_sleep);
+	print_state("is thinking", philo);
 }
 
 void	take_chopstick(char which_chopstick, t_philo *philo)
@@ -58,7 +59,7 @@ void	take_chopstick(char which_chopstick, t_philo *philo)
 			*taken = 1;
 			chopstick->used = 1;
 			pthread_mutex_unlock(&(chopstick->lock));
-			print_state("has taken chopstick", philo);
+			print_state("has taken a chopstick", philo);
 		}
 		else
 			pthread_mutex_unlock(&(chopstick->lock));
