@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:42:20 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/07 09:27:55 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:19:42 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ long	ft_atolong(const char *str)
 		result = result * 10 + (str[i] - 48);
 		i++;
 	}
+	if ((result * sign > 2147483647) || (result * sign < -2147483648))
+		return (0);
 	return (result * sign);
 }
 

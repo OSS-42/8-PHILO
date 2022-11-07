@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:37:06 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/07 13:08:57 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:48:21 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ void	*life_of_a_philo(void *arg)
 			philo->last_meal = get_time_stamp() - philo->data->first_timestamp;
 			pthread_mutex_unlock(&(philo->mutex_last_meal));
 			mod_usleep(philo->data->time_to_eat);
+			pthread_mutex_lock(&(philo->mutex_meal_count));
 			philo->meal_count++;
+			pthread_mutex_unlock(&(philo->mutex_meal_count));
 			give_back_chopstick_and_sleep(philo);
 		}
 	}

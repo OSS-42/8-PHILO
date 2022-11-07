@@ -3,7 +3,8 @@ NAME = philo
 #NAME_BONUS = philo_bonus
 
 CC = gcc
-CFLAGS = -g -Wall -Werror -Wextra -pthread
+CFLAGS = -g -Wall -Werror -Wextra -pthread -fsanitize=thread
+#CFLAGS = -fsanitize=thread
 RM = rm -rf
 HEADER = includes/philo.h
 D_SRC = src/

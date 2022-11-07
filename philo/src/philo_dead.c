@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:15:34 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/07 13:04:48 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 17:30:33 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,18 @@ int	is_philo_really_dead(t_philo *philo, long now_time)
 	pthread_mutex_unlock(&(philo->mutex_last_meal));
 	if (last_meal > philo->data->time_to_die)
 	{
-		pthread_mutex_lock(&(philo->data->mutex_print_message));
+		pthread_mutex_lock(&(philo->mutex_meal_count));
+		if (philo->meal_count >= philo->data->cycles && philo->data->cycles > 0)
+		{
+			pthread_mutex_unlock(&(philo->mutex_meal_count));
+			return (1);
+		}
+		pthread_mutex_unlock(&(philo->mutex_meal_count));
 		pthread_mutex_lock(&(philo->data->mutex_is_dead));
 		philo->data->is_dead = 1;
 		pthread_mutex_unlock(&(philo->data->mutex_is_dead));
-		printf("%09ld %d died", now_time, philo->id + 1);
+		pthread_mutex_lock(&(philo->data->mutex_print_message));
+		printf("%09ld %d died\n", now_time, philo->id + 1);
 		pthread_mutex_unlock(&(philo->data->mutex_print_message));
 		is_dead = 1;
 	}

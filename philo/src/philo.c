@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:06 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/07 09:49:40 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 17:27:02 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int	main(int ac, char **av)
 	}
 	if (!(wait_for_all_threads(&data, &philo)))
 		free_and_quit(chopsticks, philo);
+	pthread_mutex_destroy(&data.mutex_print_message);
+	pthread_mutex_destroy(&data.mutex_is_dead);
+
 	free(philo);
 	free(chopsticks);
 	return (0);

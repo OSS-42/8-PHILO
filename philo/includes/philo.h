@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:32 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/07 10:01:33 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:48:06 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_philo
 	long			last_meal;
 	int				meal_count;
 	pthread_mutex_t	mutex_last_meal;
+	pthread_mutex_t	mutex_meal_count;
 	t_fork			*right_chopstick;
 	int				right_taken;
 	t_fork			*left_chopstick;
