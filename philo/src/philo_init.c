@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:29:03 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 16:04:19 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 09:39:25 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,13 @@ int	init_data(t_vault *data, int ac, char **av)
 {
 	if (ac < 5 || ac > 6)
 	{
-		printf("%s", "Error : usage : ./philo 'nbr philos' 'time to die'");
-		printf("%s\n", " 'time to eat' 'time to sleep' [nbr meals]");
+		usage_message();
 		return (0);
 	}
+	data->nbr_philos = ft_atolong(is_av_digit(av[1]));
+	data->time_to_die = ft_atolong(is_av_digit(av[2]));
+	data->time_to_eat = ft_atolong(is_av_digit(av[3]));
+	data->time_to_sleep = ft_atolong(is_av_digit(av[4]));
 	data->cycles = -1;
 	if (ac == 6)
 	{
@@ -68,14 +71,13 @@ int	init_data(t_vault *data, int ac, char **av)
 		if (data->cycles < 0)
 			return (0);
 	}
-	data->nbr_philos = ft_atolong(is_av_digit(av[1]));
-	data->time_to_die = ft_atolong(is_av_digit(av[2]));
-	data->time_to_eat = ft_atolong(is_av_digit(av[3]));
-	data->time_to_sleep = ft_atolong(is_av_digit(av[4]));
 	data->is_dead = 0;
 	if (data->nbr_philos < 1 || data->time_to_eat <= 0 || data->time_to_die <= 0
 		|| data->time_to_sleep <= 0 || data->nbr_philos > 200)
+	{
+		usage_message();
 		return (0);
+	}
 	pthread_mutex_init(&(data->mutex_print_message), NULL);
 	pthread_mutex_init(&(data->mutex_is_dead), NULL);
 	return (1);

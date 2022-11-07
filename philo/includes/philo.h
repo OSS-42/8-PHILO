@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:32 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 15:59:41 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 09:39:52 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_philo
 
 /***** main.c *****/
 void		philo(t_vault *data);
+int			free_and_quit(t_fork *chopsticks, t_philo *philo);
 
 /***** _libft.c *****/
 char		*is_av_digit(char *str);
@@ -66,8 +67,7 @@ long		ft_atolong(const char *str);
 long long	get_time_stamp(void);
 void		mod_usleep(long time_in_ms);
 void		print_state(char *str, t_philo *philo);
-int			print_error(void);
-int			print_error2(void);
+void		usage_message(void);
 
 /***** _chopsticks.c *****/
 void		take_chopstick(char which_chopstick, t_philo *philo);

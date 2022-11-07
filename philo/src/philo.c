@@ -6,11 +6,19 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:06 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 16:02:15 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 09:34:40 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+int	free_and_quit(t_fork *chopsticks, t_philo *philo)
+{
+	printf("Unexpected error\n");
+	free(philo);
+	free(chopsticks);
+	return (0);
+}
 
 int	main(int ac, char **av)
 {
@@ -21,19 +29,13 @@ int	main(int ac, char **av)
 	if (!(init_data(&data, ac, av)))
 		return (0);
 	if (!(philo_birth(&data, &chopsticks, &philo)))
-		return (0);
+		free_and_quit(chopsticks, philo);
 	if (!(threads_creation(&data, &philo)))
 	{
 		threads_killing(&philo[0]);
-		return (0);
+		free_and_quit(chopsticks, philo);
 	}
 	if (!(wait_for_all_threads(&data, &philo)))
-	{
-		free(philo);
-		free(chopsticks);
-		return (-1);
-	}
-	free(philo);
-	free(chopsticks);
+		free_and_quit(chopsticks, philo);
 	return (0);
 }

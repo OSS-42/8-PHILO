@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:14:23 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/04 16:03:16 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/07 09:39:34 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,10 @@ long long	get_time_stamp(void)
 
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	usage_message(void)
+{
+	printf("%s", "Error : usage : ./philo 'nbr philos' 'time to die'");
+	printf("%s\n", " 'time to eat' 'time to sleep' [nbr meals]");
 }
