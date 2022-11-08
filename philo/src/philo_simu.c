@@ -6,24 +6,11 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:37:06 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/08 11:54:08 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:38:55 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-void	philo_eat(t_philo *philo)
-{
-	print_state("is eating", philo);
-	pthread_mutex_lock(&(philo->mutex_last_meal));
-	philo->last_meal = get_time_stamp() - philo->data->first_timestamp;
-	pthread_mutex_unlock(&(philo->mutex_last_meal));
-	mod_usleep(philo->data->time_to_eat);
-//	pthread_mutex_lock(&(philo->mutex_meal_count));
-	philo->meal_count++;
-//	pthread_mutex_unlock(&(philo->mutex_meal_count));
-	give_back_chopstick_and_sleep(philo);
-}
 
 void	*life_of_a_philo(void *arg)
 {
@@ -41,7 +28,13 @@ void	*life_of_a_philo(void *arg)
 			take_chopstick('R', philo);
 		if (philo->right_taken && philo->left_taken)
 		{
-			philo_eat(philo);
+			print_state("is eating", philo);
+			pthread_mutex_lock(&(philo->mutex_last_meal));
+			philo->last_meal = get_time_stamp() - philo->data->first_timestamp;
+			pthread_mutex_unlock(&(philo->mutex_last_meal));
+			mod_usleep(philo->data->time_to_eat);
+			philo->meal_count++;
+			give_back_chopstick_and_sleep(philo);
 		}
 	}
 	return (NULL);

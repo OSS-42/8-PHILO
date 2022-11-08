@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:47:39 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/08 11:39:38 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:39:52 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	wait_for_all_threads(t_vault *data, t_philo **philo)
 		if (pthread_join((*philo)[philo_id].thread, NULL))
 			return_flag = 0;
 		pthread_mutex_destroy(&(*philo)[philo_id].mutex_last_meal);
-//		pthread_mutex_destroy(&(*philo)[philo_id].mutex_meal_count);
 		pthread_mutex_destroy(&(*philo)[philo_id].left_chopstick->lock);
 		philo_id++;
 	}
@@ -43,8 +42,8 @@ int	threads_creation(t_vault *data, t_philo **philo)
 {
 	int	philo_id;
 
-	data->first_timestamp = get_time_stamp();
 	philo_id = 0;
+	data->first_timestamp = get_time_stamp();
 	while (philo_id < data->nbr_philos)
 	{
 		if (pthread_create(&((*philo)[philo_id].thread), NULL, life_of_a_philo,
