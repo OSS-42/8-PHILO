@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:14:23 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/07 13:04:25 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:46:07 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	print_state(char *str, t_philo *philo)
 	long	now_time;
 
 	now_time = get_time_stamp() - philo->data->first_timestamp;
-	pthread_mutex_lock(&(philo->data->mutex_print_message));
+//	pthread_mutex_lock(&(philo->data->mutex_print_message));
 	if (!(is_dead(philo)))
 		printf("%09ld %d %s\n", now_time, philo->id + 1, str);
-	pthread_mutex_unlock(&(philo->data->mutex_print_message));
+//	pthread_mutex_unlock(&(philo->data->mutex_print_message));
 	return ;
 }
 

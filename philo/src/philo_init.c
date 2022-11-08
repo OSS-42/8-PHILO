@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:29:03 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/07 16:53:43 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:39:23 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	philo_params(t_vault *data, t_philo *philo, t_fork **chopsticks,
 	philo->left_chopstick->used = 0;
 	pthread_mutex_init(&(philo->mutex_last_meal), NULL);
 	pthread_mutex_init(&(philo->left_chopstick->lock), NULL);
-	pthread_mutex_init(&(philo->mutex_meal_count), NULL);
+//	pthread_mutex_init(&(philo->mutex_meal_count), NULL);
 }
 
 int	philo_birth(t_vault *data, t_fork **chopsticks, t_philo **philo)
