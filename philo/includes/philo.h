@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:32 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/07 16:48:06 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/10 09:55:01 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <pthread.h>
-//# include <semaphore.h>
 # include <time.h>
 # include <sys/time.h>
 
@@ -30,7 +29,6 @@ typedef struct s_vault
 	long			time_to_sleep;
 	long long		first_timestamp;
 	int				is_dead;
-	pthread_mutex_t	mutex_print_message;
 	pthread_mutex_t	mutex_is_dead;
 	pthread_t		thread_of_death;
 }	t_vault;
