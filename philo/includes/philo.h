@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:02:32 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/10 09:55:01 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/11 14:23:04 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_vault
 	long long		first_timestamp;
 	int				is_dead;
 	pthread_mutex_t	mutex_is_dead;
+	pthread_mutex_t	mutex_message;
 	pthread_t		thread_of_death;
 }	t_vault;
 

@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:29:03 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/10 09:53:49 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/11 14:23:30 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ int	init_data(t_vault *data, int ac, char **av)
 		return (0);
 	}
 	pthread_mutex_init(&(data->mutex_is_dead), NULL);
+	pthread_mutex_init(&(data->mutex_message), NULL);
 	return (1);
 }

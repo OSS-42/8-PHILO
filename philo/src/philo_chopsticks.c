@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:34:51 by ewurstei          #+#    #+#             */
-/*   Updated: 2022/11/08 13:37:32 by ewurstei         ###   ########.fr       */
+/*   Updated: 2022/11/11 14:26:06 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,16 @@ void	give_back_chopstick_and_sleep(t_philo *philo)
 {
 	give_back_chopstick('L', philo);
 	give_back_chopstick('R', philo);
+	pthread_mutex_lock(&(philo->data->mutex_message));
 	print_state("is now sleeping", philo);
+	pthread_mutex_unlock(&(philo->data->mutex_message));
 	mod_usleep(philo->data->time_to_sleep);
-	if (philo->meal_count >= philo->data->cycles && philo->data->cycles > 0)
+	if ((philo->meal_count >= philo->data->cycles && philo->data->cycles > 0)
+		|| is_dead(philo))
 		return ;
+	pthread_mutex_lock(&(philo->data->mutex_message));
 	print_state("is thinking", philo);
+	pthread_mutex_unlock(&(philo->data->mutex_message));
 }
 
 void	take_chopstick(char which_chopstick, t_philo *philo)
@@ -61,7 +66,9 @@ void	take_chopstick(char which_chopstick, t_philo *philo)
 			*taken = 1;
 			chopstick->used = 1;
 			pthread_mutex_unlock(&(chopstick->lock));
+			pthread_mutex_lock(&(philo->data->mutex_message));
 			print_state("has taken a chopstick", philo);
+			pthread_mutex_unlock(&(philo->data->mutex_message));
 		}
 		else
 			pthread_mutex_unlock(&(chopstick->lock));
