@@ -1,6 +1,6 @@
 # 8-PHILO
 
-<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/philosophers.png" />
+<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/philosopherse.png" />
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/xDeadpoolx/8-PHILO?style=for-the-badge)
 
